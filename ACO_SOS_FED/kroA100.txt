@@ -1,0 +1,166 @@
+Initialize 10 organisms ...
+100 nodes were given. Beginning ACO Optimization with 50 iterations...
+
+
+------------------- Update alpha, beta ---------------------------
+
+======> Current alpha: 3.518706831842038
+======> Current beta: 4.845297894770628
+Iteration 0/50 | Score: 23263.0 | Best so far: 23263.0 | 0.05 s | num_equal: 1 |
+======> Current alpha: 3.518706831842038
+======> Current beta: 3.9197794974631712
+Iteration 1/50 | Score: 22454.0 | Best so far: 22454.0 | 0.05 s | num_equal: 1 |
+
+------------------- Update alpha, beta ---------------------------
+
+======> Current alpha: 3.518706831842038
+======> Current beta: 2.394197238977827
+Iteration 2/50 | Score: 23109.0 | Best so far: 22454.0 | 0.06 s | num_equal: 0 |
+======> Current alpha: 3.518706831842038
+======> Current beta: 3.8719455034453163
+Iteration 3/50 | Score: 22317.0 | Best so far: 22317.0 | 0.05 s | num_equal: 1 |
+======> Current alpha: 3.518706831842038
+======> Current beta: 3.8623282662305853
+Iteration 4/50 | Score: 23715.0 | Best so far: 22317.0 | 0.05 s | num_equal: 0 |
+======> Current alpha: 3.518706831842038
+======> Current beta: 4.880169161314326
+Iteration 5/50 | Score: 22317.0 | Best so far: 22317.0 | 0.04 s | num_equal: 1 |
+======> Current alpha: 3.518706831842038
+======> Current beta: 1.73761634151741
+Iteration 6/50 | Score: 22508.0 | Best so far: 22317.0 | 0.05 s | num_equal: 0 |
+======> Current alpha: 3.518706831842038
+======> Current beta: 1.945373171646493
+Iteration 7/50 | Score: 22516.0 | Best so far: 22317.0 | 0.05 s | num_equal: 0 |
+======> Current alpha: 3.518706831842038
+======> Current beta: 2.1294529279065633
+Iteration 8/50 | Score: 22317.0 | Best so far: 22317.0 | 0.05 s | num_equal: 1 |
+======> Current alpha: 4.05152634975338
+======> Current beta: 2.1294529279065633
+Iteration 9/50 | Score: 23593.0 | Best so far: 22317.0 | 0.05 s | num_equal: 0 |
+======> Current alpha: 4.05152634975338
+======> Current beta: 3.78339469282589
+Iteration 10/50 | Score: 22317.0 | Best so far: 22317.0 | 0.05 s | num_equal: 1 |
+======> Current alpha: 3.3846102929931794
+======> Current beta: 3.78339469282589
+Iteration 11/50 | Score: 22581.0 | Best so far: 22317.0 | 0.05 s | num_equal: 0 |
+======> Current alpha: 1.5798717507064128
+======> Current beta: 3.78339469282589
+Iteration 12/50 | Score: 22674.0 | Best so far: 22317.0 | 0.05 s | num_equal: 0 |
+======> Current alpha: 2.0566373961261224
+======> Current beta: 3.78339469282589
+Iteration 13/50 | Score: 23497.0 | Best so far: 22317.0 | 0.06 s | num_equal: 0 |
+======> Current alpha: 2.0566373961261224
+======> Current beta: 4.079121690283749
+Iteration 14/50 | Score: 22508.0 | Best so far: 22317.0 | 0.05 s | num_equal: 0 |
+======> Current alpha: 2.0566373961261224
+======> Current beta: 3.445992643134772
+Iteration 15/50 | Score: 22317.0 | Best so far: 22317.0 | 0.05 s | num_equal: 1 |
+======> Current alpha: 1.8808552506070289
+======> Current beta: 3.445992643134772
+Iteration 16/50 | Score: 22769.0 | Best so far: 22317.0 | 0.05 s | num_equal: 0 |
+======> Current alpha: 4.2526669663178325
+======> Current beta: 3.445992643134772
+Iteration 17/50 | Score: 22966.0 | Best so far: 22317.0 | 0.05 s | num_equal: 0 |
+======> Current alpha: 2.9443832938960246
+======> Current beta: 3.445992643134772
+Iteration 18/50 | Score: 22508.0 | Best so far: 22317.0 | 0.05 s | num_equal: 0 |
+======> Current alpha: 2.9443832938960246
+======> Current beta: 2.902115255599466
+Iteration 19/50 | Score: 22516.0 | Best so far: 22317.0 | 0.05 s | num_equal: 0 |
+======> Current alpha: 2.9443832938960246
+======> Current beta: 4.441345858634034
+Iteration 20/50 | Score: 23680.0 | Best so far: 22317.0 | 0.05 s | num_equal: 0 |
+======> Current alpha: 2.7225619573852193
+======> Current beta: 4.441345858634034
+Iteration 21/50 | Score: 22462.0 | Best so far: 22317.0 | 0.05 s | num_equal: 0 |
+======> Current alpha: 4.750828961297261
+======> Current beta: 4.441345858634034
+Iteration 22/50 | Score: 22516.0 | Best so far: 22317.0 | 0.04 s | num_equal: 0 |
+======> Current alpha: 4.750828961297261
+======> Current beta: 4.070499825288041
+Iteration 23/50 | Score: 22769.0 | Best so far: 22317.0 | 0.05 s | num_equal: 0 |
+======> Current alpha: 4.750828961297261
+======> Current beta: 3.021337521987658
+Iteration 24/50 | Score: 22520.0 | Best so far: 22317.0 | 0.05 s | num_equal: 0 |
+======> Current alpha: 2.383147164015359
+======> Current beta: 3.021337521987658
+Iteration 25/50 | Score: 22317.0 | Best so far: 22317.0 | 0.05 s | num_equal: 1 |
+======> Current alpha: 2.383147164015359
+======> Current beta: 4.172200937036354
+Iteration 26/50 | Score: 22609.0 | Best so far: 22317.0 | 0.05 s | num_equal: 0 |
+======> Current alpha: 2.2884270471547805
+======> Current beta: 4.172200937036354
+Iteration 27/50 | Score: 22697.0 | Best so far: 22317.0 | 0.05 s | num_equal: 0 |
+======> Current alpha: 1.7421481192102042
+======> Current beta: 4.172200937036354
+Iteration 28/50 | Score: 22462.0 | Best so far: 22317.0 | 0.05 s | num_equal: 0 |
+======> Current alpha: 3.118070086165277
+======> Current beta: 4.172200937036354
+Iteration 29/50 | Score: 22516.0 | Best so far: 22317.0 | 0.03 s | num_equal: 0 |
+======> Current alpha: 1.2027512529496827
+======> Current beta: 4.172200937036354
+Iteration 30/50 | Score: 22581.0 | Best so far: 22317.0 | 0.05 s | num_equal: 0 |
+======> Current alpha: 4.727693651764342
+======> Current beta: 4.172200937036354
+Iteration 31/50 | Score: 22317.0 | Best so far: 22317.0 | 0.05 s | num_equal: 1 |
+======> Current alpha: 4.727693651764342
+======> Current beta: 3.8493768503105885
+Iteration 32/50 | Score: 22741.0 | Best so far: 22317.0 | 0.05 s | num_equal: 0 |
+======> Current alpha: 4.727693651764342
+======> Current beta: 2.224566287318151
+Iteration 33/50 | Score: 22697.0 | Best so far: 22317.0 | 0.05 s | num_equal: 0 |
+======> Current alpha: 4.727693651764342
+======> Current beta: 3.0801979792440792
+Iteration 34/50 | Score: 22462.0 | Best so far: 22317.0 | 0.05 s | num_equal: 0 |
+======> Current alpha: 4.727693651764342
+======> Current beta: 2.280809738019243
+Iteration 35/50 | Score: 23715.0 | Best so far: 22317.0 | 0.05 s | num_equal: 0 |
+======> Current alpha: 4.727693651764342
+======> Current beta: 1.0590766507013551
+Iteration 36/50 | Score: 22432.0 | Best so far: 22317.0 | 0.05 s | num_equal: 0 |
+======> Current alpha: 4.727693651764342
+======> Current beta: 4.848953367657888
+Iteration 37/50 | Score: 22741.0 | Best so far: 22317.0 | 0.05 s | num_equal: 0 |
+======> Current alpha: 4.727693651764342
+======> Current beta: 4.096042334367519
+Iteration 38/50 | Score: 22955.0 | Best so far: 22317.0 | 0.05 s | num_equal: 0 |
+======> Current alpha: 1.9428187533259624
+======> Current beta: 4.096042334367519
+Iteration 39/50 | Score: 22769.0 | Best so far: 22317.0 | 0.05 s | num_equal: 0 |
+======> Current alpha: 1.7122090916527757
+======> Current beta: 4.096042334367519
+Iteration 40/50 | Score: 22581.0 | Best so far: 22317.0 | 0.07 s | num_equal: 0 |
+======> Current alpha: 1.7122090916527757
+======> Current beta: 1.7412343327222501
+Iteration 41/50 | Score: 22597.0 | Best so far: 22317.0 | 0.05 s | num_equal: 0 |
+======> Current alpha: 1.7122090916527757
+======> Current beta: 2.4409540552018894
+Iteration 42/50 | Score: 22766.0 | Best so far: 22317.0 | 0.05 s | num_equal: 0 |
+======> Current alpha: 1.7122090916527757
+======> Current beta: 1.2210194173416262
+Iteration 43/50 | Score: 23013.0 | Best so far: 22317.0 | 0.05 s | num_equal: 0 |
+======> Current alpha: 2.3973954137904925
+======> Current beta: 1.2210194173416262
+Iteration 44/50 | Score: 22508.0 | Best so far: 22317.0 | 0.05 s | num_equal: 0 |
+======> Current alpha: 2.3973954137904925
+======> Current beta: 2.33531868497184
+Iteration 45/50 | Score: 22697.0 | Best so far: 22317.0 | 0.05 s | num_equal: 0 |
+======> Current alpha: 3.773691556908538
+======> Current beta: 2.33531868497184
+Iteration 46/50 | Score: 22581.0 | Best so far: 22317.0 | 0.05 s | num_equal: 0 |
+======> Current alpha: 4.58876629160711
+======> Current beta: 2.33531868497184
+Iteration 47/50 | Score: 22741.0 | Best so far: 22317.0 | 0.05 s | num_equal: 0 |
+======> Current alpha: 4.58876629160711
+======> Current beta: 3.8355016483800477
+Iteration 48/50 | Score: 23440.0 | Best so far: 22317.0 | 0.05 s | num_equal: 0 |
+======> Current alpha: 3.5561008241634475
+======> Current beta: 3.8355016483800477
+Iteration 49/50 | Score: 22597.0 | Best so far: 22317.0 | 0.05 s | num_equal: 0 |
+
+ACO fitted. Runtime: 8 minute(s). Best score: 22317.0
+# Results for TOWNS from kroA100.tsp
+Best path: [[2728.0, 1698.0], [2678.0, 1825.0], [2597.0, 1830.0], [2573.0, 1969.0], [2290.0, 1810.0], [2139.0, 1806.0], [2178.0, 1619.0], [1807.0, 1711.0], [1724.0, 1642.0], [1625.0, 1651.0], [1621.0, 1830.0], [1424.0, 1728.0], [1251.0, 1832.0], [1247.0, 1945.0], [1234.0, 1946.0], [890.0, 1846.0], [929.0, 1766.0], [928.0, 1700.0], [872.0, 1559.0], [738.0, 1325.0], [611.0, 1384.0], [463.0, 1670.0], [198.0, 1810.0], [298.0, 1513.0], [274.0, 1420.0], [252.0, 1240.0], [378.0, 1048.0], [376.0, 825.0], [161.0, 906.0], [123.0, 862.0], [53.0, 857.0], [22.0, 987.0], [19.0, 674.0], [241.0, 341.0], [327.0, 265.0], [457.0, 334.0], [178.0, 24.0], [611.0, 673.0], [839.0, 620.0], [776.0, 392.0], [953.0, 268.0], [1178.0, 100.0], [1256.0, 61.0], [1429.0, 134.0], [1323.0, 280.0], [1286.0, 525.0], [1187.0, 706.0], [1380.0, 939.0], [1115.0, 1052.0], [984.0, 965.0], [938.0, 955.0], [742.0, 1025.0], [1393.0, 1368.0], [1787.0, 1009.0], [1795.0, 962.0], [1917.0, 687.0], [2097.0, 981.0], [2421.0, 1007.0], [2574.0, 946.0], [2599.0, 901.0], [2573.0, 599.0], [2588.0, 302.0], [2542.0, 236.0], [2519.0, 135.0], [2848.0, 96.0], [2936.0, 337.0], [3022.0, 474.0], [2863.0, 558.0], [2991.0, 792.0], [3113.0, 885.0], [3479.0, 821.0], [3520.0, 1079.0], [3756.0, 882.0], [3822.0, 899.0], [3854.0, 923.0], [3888.0, 666.0], [3875.0, 598.0], [3913.0, 192.0], [3893.0, 102.0], [3815.0, 169.0], [3640.0, 43.0], [3416.0, 143.0], [3874.0, 1318.0], [3950.0, 1558.0], [3911.0, 1673.0], [3955.0, 1743.0], [3683.0, 1533.0], [3510.0, 1671.0], [3447.0, 1830.0], [3373.0, 1646.0], [3384.0, 1498.0], [3085.0, 1528.0], [2961.0, 1605.0], [2945.0, 1622.0], [2721.0, 1482.0], [2716.0, 1432.0], [2586.0, 1286.0], [2482.0, 1183.0], [2628.0, 1479.0], [2576.0, 1676.0], [2728.0, 1698.0]]
+Best distance: 22317.0
+Fit time: 525 seconds
+Best series: [23263.0, 22454.0, 23109.0, 22317.0, 23715.0, 22317.0, 22508.0, 22516.0, 22317.0, 23593.0, 22317.0, 22581.0, 22674.0, 23497.0, 22508.0, 22317.0, 22769.0, 22966.0, 22508.0, 22516.0, 23680.0, 22462.0, 22516.0, 22769.0, 22520.0, 22317.0, 22609.0, 22697.0, 22462.0, 22516.0, 22581.0, 22317.0, 22741.0, 22697.0, 22462.0, 23715.0, 22432.0, 22741.0, 22955.0, 22769.0, 22581.0, 22597.0, 22766.0, 23013.0, 22508.0, 22697.0, 22581.0, 22741.0, 23440.0, 22597.0]
