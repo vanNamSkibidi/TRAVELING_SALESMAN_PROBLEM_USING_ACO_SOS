@@ -19,7 +19,7 @@ def read_map(file_path:str) -> List[List[float]]:
                 cities.append(city_coor)
 
 
-PATH_TO_MAP = "./Benchmark/rd400.tsp"
+PATH_TO_MAP = "./Benchmark/eil51.tsp"
 TOWNS = read_map(PATH_TO_MAP)
 
 # Parameter for SOS
@@ -28,8 +28,8 @@ POP_SIZE = 10  # The number of candidate solutions
 DIM = 2  # number of problem variables [α, β]
 
 # Parameter for ACO
-ANTS = 10
+ANTS = 20
 EVAPORATION_RATE = 0.1
 INTENSIFICATION = 1000
-MAX_ITER_ACO = 50  # The number of iterations
+MAX_ITER_ACO = 200  # The number of iterations
 BETA_EVAPORATION_RATE = 0.05

@@ -16,7 +16,7 @@ def main():
 
     # Extract the base name of the .tsp file (e.g., "eil51" from "eil51.tsp")
     tsp_basename = os.path.splitext(os.path.basename(PATH_TO_MAP))[0]
-    output_file_path = os.path.join(output_folder, f"{tsp_basename}.txt")
+    output_file_path = os.path.join(output_folder, f"{tsp_basename}_{ANTS}.txt")
 
     # Open the output file for writing
     with open(output_file_path, "w") as output_file:
