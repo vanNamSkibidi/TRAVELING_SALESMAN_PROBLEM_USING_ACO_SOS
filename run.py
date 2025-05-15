@@ -9,7 +9,7 @@ def main():
     - Read readme.txt for detail guidance
     - Saves results for the current TOWNS into a file in the ACO_SOS_FED folder
     """
-    # Ensure the output folder exists
+    
     output_folder = "ACO_SOS_FED"
     if not os.path.exists(output_folder):
         os.makedirs(output_folder)
