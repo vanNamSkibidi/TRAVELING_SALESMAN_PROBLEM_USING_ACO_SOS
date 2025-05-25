@@ -23,8 +23,8 @@ def read_map(file_path:str) -> np.ndarray:
 
     return np.array(cities, dtype=float)
 
-
-PATH_TO_MAP = "Benchmark/eil51.tsp"
+DATA = "rd400"
+PATH_TO_MAP = f"Benchmark/{DATA}.tsp"
 TOWNS = read_map(PATH_TO_MAP)
 
 # Parameter for SOS

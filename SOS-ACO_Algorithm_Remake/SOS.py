@@ -6,196 +6,239 @@ from typing import Union, Tuple
 class Organism(object):
     def __init__(self, phenotypes: np.ndarray) -> None:
         """
-        Organism in Symbiotic Optimization Search.
-        :param phenotypes: Array of attributes [alpha, beta].
+        Organism in Symbiotic optimization search
+        :param phenotypes: a list of attribute of organism [alpha, beta]
         """
         self.phenotypes = phenotypes
-        self.fitness = None  # Fitness computed only when needed
-        self.ACO = None  # ACO instance set when fitness is computed
-
-    def compute_fitness(self, towns: np.ndarray) -> None:
+        self.fitness = 0
+        self.ACO = None
+        
+    def set_fitness(self, cost: float) -> None:
         """
-        Compute fitness using ACO if not already computed.
-        :param towns: Coordinates of the cities for TSP.
+        Calculate fitness of organism
+        :param cost: the cost of solution
         """
-        if self.fitness is None:
-            self.ACO = ACO(
-                ants=ANTS,
-                evaporation_rate=EVAPORATION_RATE,
-                intensification=INTENSIFICATION,
-                alpha=self.phenotypes[0],
-                beta=self.phenotypes[1],
-                beta_evaporation_rate=0.005
-            )
-            self.ACO.fit(towns, iterations=25, conv_crit=20, verbose=False)
-            self.fitness = 1 / self.ACO.best
-
+        
+        self.fitness = 1 / cost
+    
+    def aco_fitness(self) -> None:
+        """
+        Use parameters of organism for ACO
+        """
+        
+        towns = TOWNS
+        self.ACO = ACO(ants=ANTS, evaporation_rate=EVAPORATION_RATE, intensification=INTENSIFICATION, alpha=self.phenotypes[0], beta=self.phenotypes[1], beta_evaporation_rate=0.005)
+        self.ACO.fit(towns, iterations=25, conv_crit=20, verbose=False)
+        self.set_fitness(self.ACO.best)
+    
     def __str__(self):
-        return f'Phenotypes: {self.phenotypes}, Fitness: {self.fitness}'
-
+        return f'{self.phenotypes} = {self.fitness}'
+    
 class SOS(object):
-    def __init__(self, lower_bound: float, upper_bound: float, population_size: int, fitness_size: int, ants: int) -> None:
+    def __init__(self,
+                 lower_bound: float,
+                 upper_bound: float,
+                 population_size: int,
+                 fitness_size: int,
+                 ants: int) -> None:
         """
-        Symbiotic Optimization Search to find optimal alpha and beta for ACO in TSP.
-        :param lower_bound: Lower bound of parameter values.
-        :param upper_bound: Upper bound of parameter values.
-        :param population_size: Number of organisms in population.
-        :param fitness_size: Number of parameters (2 for alpha, beta).
-        :param ants: Number of ants for ACO.
+        Symbiotic optimization search find optimal parameters for ACO
+        :param lower_bound: lower bound of range value limit
+        :param upper_bound: upper bound of range value limit
+        :param population_size: number of organisms in population
+        :param fitness_size: number of parameters contained in an organism
+        :param ants: number of ants to traverse the graph
         """
+        
         self.lower_bound = lower_bound
         self.upper_bound = upper_bound
         self.population_size = population_size
         self.fitness_size = fitness_size
-        self.ants = ants
         self.population = None
         self.best_organism = None
-        self.towns = TOWNS  # City coordinates for TSP
-        self.fitness_cache = {}  # Cache to store fitness for phenotypes
-
+        self.best_index = None
+        self.ants = ants
+    
     def random_parameters(self, a: float, b: float, size: Union[int, Tuple[int, int], None] = None) -> Union[float, np.ndarray]:
         """
-        Generate random parameters within bounds.
-        :param a: Lower bound.
-        :param b: Upper bound.
-        :param size: Output size (None for scalar, int for 1D array, tuple for 2D array).
-        :return: Random number(s) between a and b.
+        :param a: Lower bound (int, float).
+        :param b: Upper bound (int, float).
+        :param size: Size of the output:
+            - None: Return a single float.
+            - int: Return a 1D array of length size.
+            - tuple (rows, cols): Return a 2D array of shape (rows, cols).
+        :return: A single float or a NumPy array of random numbers between a and b.
         """
+        
         if size is None:
             return float(np.random.uniform(low=a, high=b, size=1)[0])
-        return np.random.uniform(low=a, high=b, size=size)
-
+    
+        result = np.random.uniform(low=a, high=b, size=size)
+        return result
+    
     def gen_population(self) -> None:
         """
-        Initialize population of organisms and compute fitness efficiently.
+        Initialize population of organisms with population_size
         """
-        print(f"Initializing {self.population_size} organisms...")
+        
+        print(f"Initialize {self.population_size} organisms ...")
         population_params = self.random_parameters(self.lower_bound, self.upper_bound, (self.population_size, self.fitness_size))
-        self.population = np.array([Organism(p) for p in population_params], dtype=object)
 
-        # Compute fitness for all organisms, using cache to avoid redundant ACO runs
-        for organism in self.population:
-            phenotype_tuple = tuple(organism.phenotypes)
-            if phenotype_tuple in self.fitness_cache:
-                organism.fitness = self.fitness_cache[phenotype_tuple]
-                organism.ACO = ACO(
-                    ants=ANTS,
-                    evaporation_rate=EVAPORATION_RATE,
-                    intensification=INTENSIFICATION,
-                    alpha=organism.phenotypes[0],
-                    beta=organism.phenotypes[1],
-                    beta_evaporation_rate=0.005
-                )
-                organism.ACO.fit(self.towns, iterations=25, conv_crit=20, verbose=False)
-            else:
-                organism.compute_fitness(self.towns)
-                self.fitness_cache[phenotype_tuple] = organism.fitness
+        self.population = np.array([self.create_new_organism(p) for p in population_params], dtype=object)
 
-        self.set_best_organism()
-
+        fitness_values = np.array([organism.fitness for organism in self.population])
+        best_index = np.argmax(fitness_values)
+        self.best_organism = self.population[best_index]
+    
     def create_new_organism(self, attributes: np.ndarray) -> Organism:
         """
-        Create a new organism with given attributes.
-        :param attributes: Array of attributes [alpha, beta].
-        :return: New organism.
+        Create a new organism with given attributes
+        :param attributes: a list of attribute of organism [alpha, beta]
+        :return: a new organism
         """
+        
         new_organism = Organism(attributes)
-        phenotype_tuple = tuple(attributes)
-        if phenotype_tuple in self.fitness_cache:
-            new_organism.fitness = self.fitness_cache[phenotype_tuple]
-            new_organism.ACO = ACO(
-                ants=ANTS,
-                evaporation_rate=EVAPORATION_RATE,
-                intensification=INTENSIFICATION,
-                alpha=attributes[0],
-                beta=attributes[1],
-                beta_evaporation_rate=0.005
-            )
-            new_organism.ACO.fit(self.towns, iterations=25, conv_crit=20, verbose=False)
-        else:
-            new_organism.compute_fitness(self.towns)
-            self.fitness_cache[phenotype_tuple] = new_organism.fitness
+        new_organism.aco_fitness()
         return new_organism
-
+    
     def mutualism(self, i: int) -> None:
         """
-        Mutualism phase with one ACO run for new_Xi if necessary.
-        :param i: Index of organism Xi.
+        Execute mutualism on the current best organism to find a better organism \n
+        Idea: Given an organism Xi, another different organism Xj ̸= Xi is chosen from the population. A mutualism operation is performed for Xi and
+        Xj in order to enhance their survival ability in the ecosystem. The new candidates Xinew and Xjnew are created as:
+                                        Xinew = Xi + rand(0, 1) × (Xbest − Mutual_Vector × BF1)\n
+                                        Xjnew = Xj + rand(0, 1) × (Xbest − Mutual_Vector × BF2)\n
+                                        Mutual_Vector = (Xi + Xj)/2\n
+        Xinew and Xjnew are accepted only if their fitness values are higher than those of the Xi and Xj
         """
+        
         indices = np.arange(self.population_size)
         mask = indices != i
         available_indices = indices[mask]
         j = np.random.choice(available_indices)
 
-        Xi = self.population[i]
+        # Pick two organisms Xi and Xj
         Xj = self.population[j]
+        Xi = self.population[i]
 
+        # Create random values for BF1, BF2
         bf1 = np.random.randint(1, 3)
+        bf2 = np.random.randint(1, 3)
         array_rand = self.random_parameters(0, 1, self.fitness_size)
+
+        # Calculate mutual vector
         mutual_vector = (Xi.phenotypes + Xj.phenotypes) / 2
+        
         new_Xi_params = Xi.phenotypes + array_rand * (self.best_organism.phenotypes - mutual_vector * bf1)
+        new_Xj_params = Xj.phenotypes + array_rand * (self.best_organism.phenotypes - mutual_vector * bf2)
+
+
         new_Xi_params = np.clip(new_Xi_params, self.lower_bound, self.upper_bound)
+        new_Xj_params = np.clip(new_Xj_params, self.lower_bound, self.upper_bound)
 
-        new_Xi = self.create_new_organism(new_Xi_params)
-        if new_Xi.fitness > Xi.fitness:
-            self.population[i] = new_Xi
-
+        # Create new organisms
+        new_Xi = self.create_new_organism(attributes=new_Xi_params)
+        new_Xj = self.create_new_organism(attributes=new_Xj_params)
+        self.population[i] = new_Xi if new_Xi.fitness > Xi.fitness else Xi
+        self.population[j] = new_Xj if new_Xj.fitness > Xj.fitness else Xj
+    
     def commensalism(self, i: int) -> None:
         """
-        Commensalism phase with one ACO run if necessary.
-        :param i: Index of organism Xi.
+        Execute commensalism on the current best organism to find a better organism \n
+        Idea: Given an organism Xi, another organism Xj is selected at random from the population. Xi will be converted
+        into a new organism under the help of Xj. Xinew will be accepted only if the fitness value is
+        higher than that of the ancestor Xi. In the commensalism phase, the current best solution Xbest is taken as the reference organism
+        for updating Xi. It aims to compute a promising organism near Xbest\n
+                                Xinew = Xi + rand(−1, 1) × (Xbest − Xj)\n
+        Xinew will be accepted only if the fitness value is higher than that of the ancestor Xi, It aims to compute a promising organism near
+        Xbest
         """
+        
         indices = np.arange(self.population_size)
         mask = indices != i
         available_indices = indices[mask]
         j = np.random.choice(available_indices)
 
-        Xi = self.population[i]
+        # Pick two organisms Xi and Xj
         Xj = self.population[j]
+        Xi = self.population[i]
 
         array_rand = self.random_parameters(-1, 1, self.fitness_size)
+        
         new_Xi_params = Xi.phenotypes + array_rand * (self.best_organism.phenotypes - Xj.phenotypes)
+        
         new_Xi_params = np.clip(new_Xi_params, self.lower_bound, self.upper_bound)
 
-        new_Xi = self.create_new_organism(new_Xi_params)
-        if new_Xi.fitness > Xi.fitness:
-            self.population[i] = new_Xi
-
+        # Create new organism
+        new_Xi = self.create_new_organism(attributes=new_Xi_params)
+        self.population[i] = new_Xi if new_Xi.fitness > Xi.fitness else Xi
+    
     def parasitism(self, i: int) -> None:
         """
-        Parasitism phase with one ACO run.
-        :param i: Index of organism Xi.
+        Execute parasitism on the current best organism to find a better organism\n
+        Idea: an organism Xi is selected and copied as an artificial parasite called Parasite_Vector. Then, Parasite_Vector is modified in some dimension computed
+        with a random number function. At last, an organism Xj is selected as a host for comparison. If the Parasite_Vector has a better
+        fitness value, it will replace Xj in the population and Xj will be deleted. Otherwise, Xj is maintained and Parasite_Vector will be
+        neglected.
+        :param a_index: Position of an organism in the list of organisms
         """
+        
         parasite_params = np.copy(self.population[i].phenotypes)
+
+        # Pick a random organism from the population
         indices = np.arange(self.population_size)
         mask = indices != i
         available_indices = indices[mask]
         j = np.random.choice(available_indices)
 
         Xj = self.population[j]
+
+        # Transform parasite with random dimension
         dim_index = np.random.randint(0, self.fitness_size)
-        parasite_params[dim_index] = self.random_parameters(self.lower_bound, self.upper_bound)
+        
+        if isinstance(self.lower_bound, np.ndarray) and isinstance(self.upper_bound, np.ndarray):
+            parasite_params[dim_index] = self.random_parameters(self.lower_bound[dim_index], self.upper_bound[dim_index])
+        else:
+            parasite_params[dim_index] = self.random_parameters(self.lower_bound, self.upper_bound)
 
+        # Create parasite organism
         parasite = self.create_new_organism(parasite_params)
-        if parasite.fitness > Xj.fitness:
-            self.population[j] = parasite
-
+        self.population[j] = parasite if parasite.fitness > Xj.fitness else Xj
+    
     def excute_sos(self) -> None:
         """
-        Execute SOS algorithm with minimal ACO runs.
+        Excute SOS algorithm
         """
         print("Executing SOS algorithm...")
-        for i in range(self.population_size):
+        
+        # fitness_values = np.array([organism.fitness for organism in self.population])
+        # best_index = np.argmax(fitness_values)
+        
+        # self.mutualism(i=best_index)
+        # self.commensalism(i=best_index)
+        # self.parasitism(i=best_index)
+        
+        # # Update best organism
+        # fitness_values = np.array([organism.fitness for organism in self.population])
+        # best_index = np.argmax(fitness_values)
+        # self.best_organism = self.population[best_index]
+        
+        for i, val in enumerate(self.population):
             self.mutualism(i)
             self.commensalism(i)
             self.parasitism(i)
-            self.set_best_organism()
-        print("Finished SOS algorithm")
-
+                
+            fitness_values = np.array([organism.fitness for organism in self.population])
+            best_index = np.argmax(fitness_values)
+            self.best_organism = self.population[best_index]
+                
+        print(f'Finished SOS algorithm')
+    
     def set_best_organism(self) -> None:
         """
-        Set the best organism from the population.
+        Set the best organism from the population
         """
+        
         fitness_values = np.array([organism.fitness for organism in self.population])
         best_index = np.argmax(fitness_values)
         self.best_organism = self.population[best_index]

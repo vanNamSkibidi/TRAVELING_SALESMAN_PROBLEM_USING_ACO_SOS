@@ -13,7 +13,7 @@ def main():
     data_name = os.path.basename(PATH_TO_MAP).split('.')[0]  # Gets "eil51"
 
     # Create output directory if it doesn't exist
-    output_dir = "F:/2_2025/DAA/SOS-ACO_Algorithm_Remake/ACO_SOS_RFED"
+    output_dir = f"F:/2_2025/DAA/SOS-ACO_Algorithm_Remake/RFED/{DATA}"
     if not os.path.exists(output_dir):
         os.makedirs(output_dir)
 

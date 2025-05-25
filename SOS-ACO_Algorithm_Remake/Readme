@@ -1,0 +1,3 @@
+Cách chạy aco_sos :
+Chính sửa tham số ở file parameter.py dòng 26 với data nằm trong folder "Benchmark"
+Sau đó chạy main.py, kết quả sẽ được lưu vào result for each data ở folder "RFED" với định dạng {data}_iter{i}

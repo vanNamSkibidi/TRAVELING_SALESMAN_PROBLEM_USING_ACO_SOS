@@ -174,28 +174,20 @@ class SOS_ACO:
         Optimize the parameters using SOS.
         """
         self.SOS_obj.excute_sos()
-
-        # Ensure best_organism.ACO is initialized
-        if self.SOS_obj.best_organism.ACO is None:
-            self.SOS_obj.best_organism.compute_fitness(self.map_coordinates)
-
-        # Update pheromones if not initialized
+        
         if self.pheromones is None:
-            self.pheromones = np.ones((self.num_nodes, self.num_nodes), dtype=np.float64)
-            np.fill_diagonal(self.pheromones, 0)
-
-        # Update best solution if improved
-        if self.best is None or self.SOS_obj.best_organism.ACO.best < self.best:
+            self.pheromones = self.SOS_obj.best_organism.ACO.pheromones
+        
+        if self.best is None or self.best > self.SOS_obj.best_organism.ACO.best:
             print("\n------------------- Update alpha, beta ---------------------------\n")
             self.best = self.SOS_obj.best_organism.ACO.best
             self.best_path = self.SOS_obj.best_organism.ACO.best_path
             self.__intensity(self.best_path, self.best)
-
-        # Update alpha and beta
+        
         self.heuristic_alpha = self.SOS_obj.best_organism.phenotypes[0]
         self.heuristic_beta = self.SOS_obj.best_organism.phenotypes[1]
-
-        # Update probabilities
+        # self.pheromones = self.SOS_obj.best_organism.ACO.pheromones
+        
         self.__update_probabilities()
     
     def fit(self, map_coordinates: np.ndarray, iterations: int, conv_crit=20, verbose=True) -> None:

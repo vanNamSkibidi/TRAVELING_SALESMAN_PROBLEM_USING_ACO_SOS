@@ -268,12 +268,12 @@ class ACO:
     def get_result(self) -> Tuple[np.ndarray, float, float, np.ndarray]:
         return self.best_path, self.best, self.fitting_time, self.best_series
 
-if __name__ == "__main__":
-    towns = TOWNS
-    ACO_optimizer = ACO(ants=ANTS, evaporation_rate=EVAPORATION_RATE, intensification=INTENSIFICATION, alpha=1.00, beta=5.00, beta_evaporation_rate=0.005)
-    ACO_optimizer.fit(towns, iterations=MAX_ITER_ACO, conv_crit=20)
-    best_path, best, fitting_time, best_series = ACO_optimizer.get_result()
+# if __name__ == "__main__":
+#     towns = TOWNS
+#     ACO_optimizer = ACO(ants=ANTS, evaporation_rate=EVAPORATION_RATE, intensification=INTENSIFICATION, alpha=1.00, beta=5.00, beta_evaporation_rate=0.005)
+#     ACO_optimizer.fit(towns, iterations=MAX_ITER_ACO, conv_crit=20)
+#     best_path, best, fitting_time, best_series = ACO_optimizer.get_result()
     
-    best_path_coordinate = [tuple(towns[i]) for i in best_path]
-    print(f'Best path: {best_path_coordinate}')
+#     best_path_coordinate = [tuple(towns[i]) for i in best_path]
+#     print(f'Best path: {best_path_coordinate}')
         
